@@ -1,18 +1,25 @@
-import { Button, Grid, GridItem, useColorModeValue } from '@chakra-ui/react';
+import { Button, Grid, GridItem } from '@chakra-ui/react';
 
 interface KeypadProps {
   onDigit: (digit: number) => void;
 }
 
 export function Keypad({ onDigit }: KeypadProps) {
-  const btnBg = useColorModeValue('gray.200', 'gray.600');
-  const btnHoverBg = useColorModeValue('gray.300', 'gray.500');
-  const textColor = useColorModeValue('gray.900', 'white');
-
   const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  const glassButtonStyle = {
+    bg: "rgba(255, 255, 255, 0.1)",
+    color: "white",
+    backdropFilter: "blur(10px)",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    _hover: { bg: "rgba(255, 255, 255, 0.2)", transform: "translateY(-2px)" },
+    _active: { bg: "rgba(255, 255, 255, 0.3)", transform: "scale(0.95)" },
+    transition: "all 0.2s cubic-bezier(.08,.52,.52,1)",
+    boxShadow: "0 4px 15px rgba(0,0,0,0.1)"
+  };
+
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={2}>
+    <Grid templateColumns="repeat(3, 1fr)" gap={3}>
       {digits.map((digit) => (
         <GridItem key={digit}>
           <Button
@@ -21,13 +28,9 @@ export function Keypad({ onDigit }: KeypadProps) {
             height="16"
             width="100%"
             minW={0}
-            bg={btnBg}
-            color={textColor}
-            _hover={{ bg: btnHoverBg }}
-            _active={{ bg: btnHoverBg, transform: 'scale(0.98)' }}
-            boxShadow="sm"
-            borderRadius="md"
+            borderRadius="xl"
             onClick={() => onDigit(digit)}
+            {...glassButtonStyle}
           >
             {digit}
           </Button>
@@ -40,13 +43,9 @@ export function Keypad({ onDigit }: KeypadProps) {
           height="16"
           width="100%"
           minW={0}
-          bg={btnBg}
-          color={textColor}
-          _hover={{ bg: btnHoverBg }}
-          _active={{ bg: btnHoverBg, transform: 'scale(0.98)' }}
-          boxShadow="sm"
-          borderRadius="md"
+          borderRadius="xl"
           onClick={() => onDigit(0)}
+          {...glassButtonStyle}
         >
           0
         </Button>
