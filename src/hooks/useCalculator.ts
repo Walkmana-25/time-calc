@@ -11,6 +11,7 @@ import {
 
 interface UseCalculatorReturn {
   displayValue: TimeValue;
+  storedValue: TimeValue | null;
   operation: Operation | null;
   hasStoredValue: boolean;
   inputDigit: (digit: number) => void;
@@ -171,6 +172,7 @@ export function useCalculator(): UseCalculatorReturn {
 
   return {
     displayValue: state.currentValue,
+    storedValue: state.storedValue,
     operation: state.operation,
     hasStoredValue: state.storedValue !== null,
     inputDigit,

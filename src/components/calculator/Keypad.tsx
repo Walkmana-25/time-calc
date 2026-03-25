@@ -23,9 +23,8 @@ export function Keypad({ onDigit }: KeypadProps) {
       {digits.map((digit) => (
         <GridItem key={digit}>
           <Button
-            size="lg"
-            fontSize="2xl"
-            height="16"
+            fontSize={{ base: '2xl', md: '3xl' }}
+            height={{ base: '20', md: '20' }}
             width="100%"
             minW={0}
             borderRadius="xl"
@@ -38,9 +37,8 @@ export function Keypad({ onDigit }: KeypadProps) {
       ))}
       <GridItem colSpan={3}>
         <Button
-          size="lg"
-          fontSize="2xl"
-          height="16"
+          fontSize={{ base: '2xl', md: '3xl' }}
+          height={{ base: '20', md: '20' }}
           width="100%"
           minW={0}
           borderRadius="xl"
@@ -53,3 +51,4 @@ export function Keypad({ onDigit }: KeypadProps) {
     </Grid>
   );
 }
+

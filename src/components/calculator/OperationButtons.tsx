@@ -18,9 +18,8 @@ export function OperationButtons({
 }: OperationButtonsProps) {
 
   const baseBtnStyle = {
-    size: "lg",
-    fontSize: "2xl",
-    height: "16",
+    fontSize: { base: '2xl', md: '2xl' },
+    height: { base: '20', md: '20' },
     minW: 0,
     borderRadius: "xl",
     backdropFilter: "blur(10px)",
