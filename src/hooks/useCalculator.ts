@@ -36,7 +36,10 @@ export function useCalculator(): UseCalculatorReturn {
   const inputDigit = useCallback(
     (digit: number) => {
       setState((prev) => {
-        const newTime = cloneTime(prev.currentValue);
+        // If a new entry is expected (e.g. after operator pressed), start fresh
+        const base = prev.isNewEntry ? createZeroTime() : cloneTime(prev.currentValue);
+        const newTime = base;
+
         // Start from seconds and work up
         const newValue = newTime.seconds * 10 + digit;
 
