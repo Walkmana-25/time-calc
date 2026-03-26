@@ -24,7 +24,7 @@ export function Keypad({ onDigit }: KeypadProps) {
         <GridItem key={digit}>
           <Button
             fontSize={{ base: '2xl', md: '3xl' }}
-            height={{ base: '20', md: '20' }}
+            height={{ base: '20', md: '24' }}
             width="100%"
             minW={0}
             borderRadius="xl"
@@ -38,7 +38,7 @@ export function Keypad({ onDigit }: KeypadProps) {
       <GridItem colSpan={3}>
         <Button
           fontSize={{ base: '2xl', md: '3xl' }}
-          height={{ base: '20', md: '20' }}
+          height={{ base: '20', md: '24' }}
           width="100%"
           minW={0}
           borderRadius="xl"

@@ -19,7 +19,7 @@ export function OperationButtons({
 
   const baseBtnStyle = {
     fontSize: { base: '2xl', md: '2xl' },
-    height: { base: '20', md: '20' },
+    height: { base: '20', md: '24' },
     minW: 0,
     borderRadius: "xl",
     backdropFilter: "blur(10px)",
