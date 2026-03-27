@@ -43,22 +43,31 @@ export function Calculator() {
       initial={{ opacity: 0, scale: 0.95, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      bg="rgba(255, 255, 255, 0.05)"
-      backdropFilter="blur(24px) saturate(180%)"
-      p={{ base: 4, md: 8 }}
-      borderRadius="3xl"
-      boxShadow="0 8px 32px 0 rgba(0, 0, 0, 0.37)"
-      border="1px solid rgba(255, 255, 255, 0.1)"
+      bg="rgba(255, 255, 255, 0.08)"
+      backdropFilter="blur(32px) saturate(200%)"
+      p={{ base: 6, md: 10 }}
+      borderRadius="4xl"
+      boxShadow="0 12px 48px 0 rgba(0, 0, 0, 0.4), 0 2px 12px 0 rgba(0, 0, 0, 0.2)"
+      border="1px solid rgba(255, 255, 255, 0.15)"
       position="relative"
       overflow="hidden"
+      maxW="480px"
+      mx="auto"
     >
       <Box
         position="absolute"
         top="-50%" left="-50%" w="200%" h="200%"
-        bgGradient="radial(circle, rgba(255,255,255,0.05) 0%, transparent 60%)"
+        bgGradient="radial(circle, rgba(255,255,255,0.08) 0%, transparent 70%)"
         pointerEvents="none"
       />
-      <VStack spacing={5} align="stretch" position="relative" zIndex={1}>
+      <Box
+        position="absolute"
+        top="0" right="0" w="60%" h="60%"
+        bgGradient="radial(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)"
+        pointerEvents="none"
+        filter="blur(40px)"
+      />
+      <VStack spacing={6} align="stretch" position="relative" zIndex={1}>
         <FormatSelector format={format} onFormatChange={setFormat} />
         <Display value={displayValue} format={format} expression={expression} />
         <Keypad onDigit={inputDigit} />
