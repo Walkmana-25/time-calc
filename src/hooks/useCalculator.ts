@@ -38,37 +38,34 @@ export function useCalculator(): UseCalculatorReturn {
       setState((prev) => {
         // If a new entry is expected (e.g. after operator pressed), start fresh
         const base = prev.isNewEntry ? createZeroTime() : cloneTime(prev.currentValue);
-        const newTime = base;
 
-        // Start from seconds and work up
-        const newValue = newTime.seconds * 10 + digit;
+        // Shift all digits left and add new digit on the right
+        // Treat time as 8 digits: DD HH MM SS (2 digits each)
+        // Example: 00:00:01:23 pressing 4 -> 00:00:12:34
 
-        if (newValue > 59) {
-          newTime.seconds = newValue % 60;
-          const minuteOverflow = Math.floor(newValue / 60);
-          const newMinutes = newTime.minutes + minuteOverflow;
+        // Extract current digits (each time unit has 2 digits)
+        const d0 = base.days % 10;                    // days ones
+        const h1 = Math.floor(base.hours / 10) % 10; // hours tens
+        const h0 = base.hours % 10;                   // hours ones
+        const m1 = Math.floor(base.minutes / 10) % 10; // minutes tens
+        const m0 = base.minutes % 10;                 // minutes ones
+        const s1 = Math.floor(base.seconds / 10) % 10; // seconds tens
+        const s0 = base.seconds % 10;                 // seconds ones
 
-          if (newMinutes > 59) {
-            newTime.minutes = newMinutes % 60;
-            const hourOverflow = Math.floor(newMinutes / 60);
-            const newHours = newTime.hours + hourOverflow;
-
-            if (newHours > 23) {
-              newTime.hours = newHours % 24;
-              newTime.days += Math.floor(newHours / 24);
-            } else {
-              newTime.hours = newHours;
-            }
-          } else {
-            newTime.minutes = newMinutes;
-          }
-        } else {
-          newTime.seconds = newValue;
-        }
+        // Shift all digits left by one position, add new digit at rightmost position
+        const newDays = d0 * 10 + h1;
+        const newHours = h0 * 10 + m1;
+        const newMinutes = m0 * 10 + s1;
+        const newSeconds = s0 * 10 + digit;
 
         return {
           ...prev,
-          currentValue: newTime,
+          currentValue: {
+            days: newDays,
+            hours: newHours,
+            minutes: newMinutes,
+            seconds: newSeconds,
+          },
           isNewEntry: false,
         };
       });
